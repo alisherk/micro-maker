@@ -1,0 +1,9 @@
+version: "3.9"
+
+services: 
+  micromaker: 
+    build: .
+    working_dir: /home/vscode/workspace
+    volumes:
+      - ~/.ssh:/home/vscode/.ssh
+      - ..:/home/vscode/workspace
