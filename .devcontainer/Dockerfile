@@ -16,10 +16,6 @@ RUN echo 'xdebug.mode=debug' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.
     && echo 'xdebug.start_with_request=yes' >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN useradd -m -u 1000 -G www-data vscode
-# Create the .devcontainer directory
-RUN mkdir -p /home/vscode/.devcontainer
-    
-RUN rm -rf /var/www/html && ln -s /home/vscode/workspace /var/www/html
 
 RUN echo 'export PS1="\e[32mMicroMaker\e[0m \w $ "' >> /home/vscode/.bashrc
 

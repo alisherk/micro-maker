@@ -1,9 +1,27 @@
 version: "3.9"
 
 services: 
-  micromaker: 
+  php: 
     build: .
     working_dir: /home/vscode/workspace
     volumes:
       - ~/.ssh:/home/vscode/.ssh
       - ..:/home/vscode/workspace
+    networks:
+      - micromaker-network
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ..:/home/vscode/workspace
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+    networks:
+      - micromaker-network
+    depends_on: 
+     - php
+     
+networks:
+  micromaker-network:
+    driver: bridge
